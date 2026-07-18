@@ -1,0 +1,18 @@
+{
+  "name": "commerce-forge",
+  "version": "0.1.0",
+  "private": true,
+  "author": "SegniB",
+  "description": "A production-oriented e-commerce platform built with React, TypeScript, TanStack Query, MUI, Zod, NestJS, PostgreSQL, and Prisma.",
+  "license": "MIT",
+  "packageManager": "pnpm@10.11.0",
+  "engines": {
+    "node": ">=24.0.0 <25"
+  },
+  "scripts": {
+     "build": "pnpm --recursive --if-present run build",
+    "lint": "pnpm --recursive --if-present run lint",
+    "test": "pnpm --recursive --if-present run test",
+    "typecheck": "pnpm --recursive --if-present run typecheck"
+  }
+}
