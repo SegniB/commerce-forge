@@ -9,10 +9,12 @@
   "engines": {
     "node": ">=24.0.0 <25"
   },
-  "scripts": {
-     "build": "pnpm --recursive --if-present run build",
-    "lint": "pnpm --recursive --if-present run lint",
-    "test": "pnpm --recursive --if-present run test",
-    "typecheck": "pnpm --recursive --if-present run typecheck"
-  }
+"scripts": {
+  "dev:web": "pnpm --filter @commerce-forge/web dev",
+  "dev:api": "pnpm --filter @commerce-forge/api dev",
+  "build": "pnpm --recursive --if-present run build",
+  "lint": "pnpm --recursive --if-present run lint",
+  "test": "pnpm --recursive --if-present run test",
+  "typecheck": "pnpm --recursive --if-present run typecheck"
+}
 }
