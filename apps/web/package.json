@@ -2,7 +2,7 @@
   "name": "@commerce-forge/web",
   "private": true,
   "version": "0.1.0",
-  "license":"MIT",
+  "license": "MIT",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -13,6 +13,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@commerce-forge/contracts": "workspace:*",
     "react": "^19.2.7",
     "react-dom": "^19.2.7"
   },
