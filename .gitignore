@@ -119,6 +119,9 @@ dist
 # Firebase cache directory
 .firebase/
 
+# Prisma generated client
+apps/api/src/generated/prisma/
+
 # TernJS port file
 .tern-port
 
