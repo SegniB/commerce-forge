@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import { ProductSchema } from '../src';
+import { ProductSchema, ProductSlugSchema } from '../src';
 
 const validProduct = {
   id: '1f42f576-b17d-4e42-b970-843ad0eb6119',
@@ -43,5 +43,20 @@ describe('ProductSchema', () => {
     };
 
     expect(ProductSchema.safeParse(product).success).toBe(false);
+  });
+});
+
+describe('ProductSlugSchema', () => {
+  it('accepts a lowercase hyphenated slug', () => {
+    expect(ProductSlugSchema.safeParse('classic-t-shirt').success).toBe(true);
+  });
+
+  it.each([
+    'Classic-T-Shirt',
+    'classic--t-shirt',
+    '-classic-t-shirt',
+    'classic-t-shirt-',
+  ])('rejects invalid slug: %s', (slug) => {
+    expect(ProductSlugSchema.safeParse(slug).success).toBe(false);
   });
 });

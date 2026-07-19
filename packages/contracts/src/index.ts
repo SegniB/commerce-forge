@@ -10,10 +10,12 @@ export type {
 
 export {
   ProductSchema,
+  ProductSlugSchema,
   ProductVariantSchema,
 } from './catalog/product.contract';
 
 export type {
   Product,
+  ProductSlug,
   ProductVariant,
 } from './catalog/product.contract';
