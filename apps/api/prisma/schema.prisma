@@ -7,3 +7,36 @@ generator client {
 datasource db {
   provider = "postgresql"
 }
+
+enum Currency {
+  EUR
+}
+
+model Product {
+  id          String           @id @default(dbgenerated("uuidv7()")) @db.Uuid
+  name        String           @db.VarChar(120)
+  slug        String           @unique @db.VarChar(160)
+  description String           @db.VarChar(5000)
+  variants    ProductVariant[]
+  createdAt   DateTime         @default(now()) @map("created_at") @db.Timestamptz(3)
+  updatedAt   DateTime         @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(3)
+
+  @@map("products")
+}
+
+model ProductVariant {
+  id               String   @id @default(dbgenerated("uuidv7()")) @db.Uuid
+  productId        String   @map("product_id") @db.Uuid
+  sku              String   @unique @db.VarChar(64)
+  color            String   @db.VarChar(50)
+  size             String   @db.VarChar(20)
+  priceAmountMinor Int      @map("price_amount_minor")
+  priceCurrency    Currency @default(EUR) @map("price_currency")
+  stockQuantity    Int      @default(0) @map("stock_quantity")
+  product          Product  @relation(fields: [productId], references: [id], onDelete: Restrict, onUpdate: Cascade)
+  createdAt        DateTime @default(now()) @map("created_at") @db.Timestamptz(3)
+  updatedAt        DateTime @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(3)
+
+  @@unique([productId, color, size])
+  @@map("product_variants")
+}
