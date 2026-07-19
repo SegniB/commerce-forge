@@ -3,6 +3,7 @@ import { fileURLToPath } from 'node:url';
 
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
+import { DatabaseModule } from './database/database.module.js';
 
 import { AppController } from './app.controller.js';
 import { AppService } from './app.service.js';
@@ -20,6 +21,7 @@ const rootEnvironmentFile = resolve(
       envFilePath: rootEnvironmentFile,
       validate: validateEnvironment,
     }),
+    DatabaseModule,
   ],
   controllers: [AppController],
   providers: [AppService],

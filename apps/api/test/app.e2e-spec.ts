@@ -3,6 +3,7 @@ import { INestApplication } from '@nestjs/common';
 import request from 'supertest';
 import type { App } from 'supertest/types.js';
 import { AppModule } from './../src/app.module.js';
+import { PrismaService } from './../src/database/prisma.service.js';
 
 describe('AppController (e2e)', () => {
   let app: INestApplication<App>;
@@ -21,6 +22,16 @@ describe('AppController (e2e)', () => {
       .get('/')
       .expect(200)
       .expect('Hello World!');
+  });
+
+  it('connects to PostgreSQL', async () => {
+    const database = app.get(PrismaService);
+
+    const result = await database.$queryRaw<Array<{ value: number }>>`
+      SELECT 1 AS value
+    `;
+
+    expect(result).toEqual([{ value: 1 }]);
   });
 
   afterEach(async () => {
